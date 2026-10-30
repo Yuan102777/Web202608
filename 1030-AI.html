@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAWLUXE | 精品寵物天然手作食品</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="model.css">
+    <style>
+        /* === 精品寵物主題：粉紅浪漫延伸變化 === */
+        body {
+            background-color: #fff9fa;
+            color: #4a3b3d;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .box01 {
+            height: 160px;
+            line-height: 1.2;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(233, 150, 166, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+
+        .box01:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(233, 150, 166, 0.3);
+        }
+
+        /* 覆蓋 Bootstrap 顏色，打造柔和粉色系層次 */
+        .bg-success {
+            background: linear-gradient(135deg, #ffb6c1, #ff91a4) !important;
+            color: #fff;
+            font-size: 36px !important;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bg-warning {
+            background-color: #fff0f3 !important;
+            border: 2px solid #ffccd5;
+            color: #884351;
+        }
+
+        .bg-secondary {
+            background-color: #ffe5ec !important;
+            border: 2px solid #ffb3c6;
+            color: #783542;
+        }
+
+        .bg-danger {
+            background-color: #ffffff !important;
+            border: 1px solid #ffd1dc;
+            color: #5a3d40;
+        }
+
+        .bg-info {
+            background: linear-gradient(135deg, #ff8fa3, #ffb3c6) !important;
+            color: #fff;
+            font-size: 32px !important;
+            letter-spacing: 1px;
+        }
+
+        /* 商品卡片文字與標籤優化 */
+        .card-tag {
+            font-size: 12px;
+            background: #ff758c;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 18px;
+            color: #d81b60;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <!-- Header 區塊 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-3 d-md-none d-lg-block">
+                <div class="box01 bg-success">
+                    🐾 PAWLUXE 精品寵物鮮食美學
+                    <span style="font-size: 16px; font-weight: 400; margin-top: 4px;">給予毛孩如同家人般的頂級奢華寵愛</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 明星主打商品 (使用黃色區塊調整為粉嫩暖香系) -->
+        <div class="row">
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="box01 bg-warning" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('image/01.jpg');">
+                    <span class="card-tag">人氣No.1</span>
+                    法式嫩烤鮮鮭魚排
+                    <span class="price">NT$ 480</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="box01 bg-warning" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('image/02.jpg');">
+                    <span class="card-tag">低敏護膚</span>
+                    頂級低脂鹿肉佐野莓
+                    <span class="price">NT$ 520</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="box01 bg-warning" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('image/01.jpg');">
+                    <span class="card-tag">機能保健</span>
+                    黃金鴕鳥肉關節護理煲
+                    <span class="price">NT$ 450</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="box01 bg-warning" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('image/02.jpg');">
+                    <span class="card-tag">主廚特製</span>
+                    手作鰹魚晶凍鮮蝦磚
+                    <span class="price">NT$ 390</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="box01 bg-warning" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('image/01.jpg');">
+                    <span class="card-tag">幼貓狗專用</span>
+                    鮮乳羊奶酪慕斯罐
+                    <span class="price">NT$ 280</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 col-xxl-2 mt-3">
+                <div class="box01 bg-warning" style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('image/02.jpg');">
+                    <span class="card-tag">限時限量</span>
+                    草原黑安格斯牛排丁
+                    <span class="price">NT$ 560</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 嚴選點心與配料系列 (使用灰色區塊轉化為玫瑰粉灰系) -->
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="box01 bg-secondary">
+                    <span style="font-size: 14px; color: #a65263;">MEMBER EXCLUSIVE</span>
+                    頂級機能凍乾組
+                    <span class="price" style="font-size: 15px;">85折優惠</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="box01 bg-secondary">
+                    <span style="font-size: 14px; color: #a65263;">GIFT BOX</span>
+                    寵愛生日派對禮盒
+                    <span class="price" style="font-size: 15px;">NT$ 1,280</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="box01 bg-secondary">
+                    <span style="font-size: 14px; color: #a65263;">ORGANIC</span>
+                    有機貓草舒壓棒
+                    <span class="price" style="font-size: 15px;">NT$ 220</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3">
+                <div class="box01 bg-secondary">
+                    <span style="font-size: 14px; color: #a65263;">SUPPLEMENT</span>
+                    深海純淨鮭魚油
+                    <span class="price" style="font-size: 15px;">NT$ 680</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3 d-none d-xxl-block">
+                <div class="box01 bg-secondary">
+                    <span style="font-size: 14px; color: #a65263;">HEALTHY</span>
+                    潔牙低敏鹿角餅
+                    <span class="price" style="font-size: 15px;">NT$ 320</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 col-xxl-2 mt-3 d-none d-xxl-block">
+                <div class="box01 bg-secondary">
+                    <span style="font-size: 14px; color: #a65263;">NATURAL</span>
+                    慢火熬煮雞骨精華
+                    <span class="price" style="font-size: 15px;">NT$ 300</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 品牌特惠專區 (紅色的區塊轉化為精緻純白與粉紅邊框) -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">🐾 新會員專屬禮</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">✨ 全館滿千免運</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">🥗 營養師訂製鮮食</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">🎁 寵物生日募集中</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">⭐ VIP 尊榮回饋</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">🌿 100% 無添加保證</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">📦 定期配送方案</div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="box01 bg-danger">💬 專屬營養顧問</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer 區塊 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-3 d-none d-md-block">
+                <div class="box01 bg-info">
+                    PAWLUXE Boutique Pet Food &copy; 2026. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
