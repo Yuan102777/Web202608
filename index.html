@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人履歷 | 全端工程師 (FinTech Specialization)</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Inter & Noto Sans TC) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- 自訂金融風格 CSS -->
+    <style>
+        :root {
+            /* 金融體系色彩計畫 */
+            --fin-navy-dark: #0A192F;      /* 深海藍 / 沉穩主色 */
+            --fin-navy-primary: #1E3A8A;   /* 皇家海軍藍 */
+            --fin-navy-light: #2A4365;     /* 輔助藍 */
+            --fin-gold: #D97706;           /* 典雅琥珀金 */
+            --fin-gold-light: #F59E0B;     /* 高亮金 */
+            --fin-slate-bg: #F8FAFC;       /* 淺灰背景 */
+            --fin-card-bg: #FFFFFF;        /* 卡片白 */
+            --fin-text-main: #1E293B;      /* 主要文字 */
+            --fin-text-muted: #64748B;     /* 次要文字 */
+            --fin-border: #E2E8F0;          /* 邊框線條 */
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            color: var(--fin-text-main);
+            background-color: var(--fin-slate-bg);
+            line-height: 1.6;
+        }
+
+        /* 頂部導覽列 */
+        .navbar-custom {
+            background-color: var(--fin-navy-dark);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-custom .navbar-brand {
+            color: #FFFFFF;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-custom .navbar-brand span {
+            color: var(--fin-gold-light);
+        }
+
+        .navbar-custom .nav-link {
+            color: #CBD5E1;
+            font-weight: 500;
+            margin: 0 5px;
+            transition: color 0.2s;
+        }
+
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: var(--fin-gold-light);
+        }
+
+        /* Hero 主視覺區塊 */
+        .hero-section {
+            background: linear-gradient(135deg, var(--fin-navy-dark) 0%, var(--fin-navy-primary) 100%);
+            color: #FFFFFF;
+            padding: 100px 0 70px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .avatar-box {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 4px solid var(--fin-gold);
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background-color: #ffffff;
+            object-fit: cover;
+        }
+
+        .badge-fintech {
+            background-color: rgba(217, 119, 6, 0.2);
+            color: var(--fin-gold-light);
+            border: 1px solid var(--fin-gold);
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        /* 通用標題樣式 */
+        .section-title {
+            position: relative;
+            font-weight: 700;
+            color: var(--fin-navy-dark);
+            margin-bottom: 2.5rem;
+            padding-bottom: 0.8rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--fin-gold);
+            border-radius: 2px;
+        }
+
+        .text-center .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 卡片通用樣式 */
+        .custom-card {
+            background-color: var(--fin-card-bg);
+            border: 1px solid var(--fin-border);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(10, 25, 47, 0.08);
+        }
+
+        /* 時間軸 (學經歷區塊) */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid var(--fin-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--fin-gold);
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 0 0 2px var(--fin-navy-primary);
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--fin-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 技能標籤區塊 */
+        .skill-pill {
+            background-color: #F1F5F9;
+            color: var(--fin-navy-dark);
+            border: 1px solid var(--fin-border);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-right: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* 作品集專用按鈕與風格 */
+        .portfolio-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-img-wrapper {
+            height: 180px;
+            background-color: var(--fin-navy-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-img-wrapper i {
+            font-size: 3.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover .portfolio-img-wrapper i {
+            transform: scale(1.1);
+            color: var(--fin-gold-light);
+        }
+
+        .btn-fintech-primary {
+            background-color: var(--fin-navy-primary);
+            color: #FFFFFF;
+            border: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-fintech-primary:hover {
+            background-color: var(--fin-navy-dark);
+            color: var(--fin-gold-light);
+        }
+
+        .btn-fintech-outline {
+            border: 1px solid var(--fin-navy-primary);
+            color: var(--fin-navy-primary);
+            background-color: transparent;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-fintech-outline:hover {
+            background-color: var(--fin-navy-primary);
+            color: #FFFFFF;
+        }
+
+        /* 分頁按鈕樣式 */
+        .nav-pills .nav-link {
+            color: var(--fin-navy-dark);
+            font-weight: 500;
+            border-radius: 6px;
+            padding: 8px 20px;
+            margin-right: 8px;
+            border: 1px solid var(--fin-border);
+            background-color: #FFFFFF;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--fin-navy-primary);
+            color: #FFFFFF;
+            border-color: var(--fin-navy-primary);
+        }
+
+        /* 頁尾頁籤 */
+        footer {
+            background-color: var(--fin-navy-dark);
+            color: #94A3B8;
+            padding: 40px 0 20px 0;
+            border-top: 3px solid var(--fin-gold);
+        }
+
+        footer a {
+            color: #E2E8F0;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--fin-gold-light);
+        }
+
+        /* 平滑滾動 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="80">
+
+    <!-- 1. 頂部導覽列 Navigation -->
+    <nav id="navbar-example" class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-shield-halved me-2 text-warning"></i> Alex Chen <span>.Dev</span>
+            </a>
+            <button class="navbar-toggler" type="type" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">關於我</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">專業技能</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">學經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">作品集</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">聯絡方式</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero 主視覺區塊區塊 -->
+    <section id="about" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                    <!-- 大頭照佔位圖 -->
+                    <img src="https://placehold.co/300x300/1E3A8A/FFFFFF?text=Full-Stack+Dev" alt="Alex Chen 肖像" class="avatar-box img-fluid">
+                </div>
+                <div class="col-lg-8">
+                    <div class="mb-2">
+                        <span class="badge badge-fintech mb-2"><i class="fa-solid fa-code me-1"></i> 應徵職務：全端工程師 (Full-Stack Engineer)</span>
+                    </div>
+                    <h1 class="display-5 fw-bold mb-3">陳大明 (Alex Chen)</h1>
+                    <p class="lead text-light mb-3">具備 <strong>金融領域知識 (FinTech Focus)</strong> 的全端開發工程師</p>
+                    <p class="text-light opacity-75 mb-4">
+                        擁有名校財金系背景與數年金融機構帳務系統維護經驗，轉職專攻現代化 Full-Stack 開發。擅長使用 <strong>Node.js / Python (FastAPI)</strong> 搭配 <strong>React / Vue</strong> 打造高安全性、高併發性且符合金融法規合規標準的系統平台。
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="badge bg-dark border border-secondary text-light"><i class="fa-brands fa-react me-1"></i> React.js</span>
+                        <span class="badge bg-dark border border-secondary text-light"><i class="fa-brands fa-node-js me-1"></i> Node.js / Express</span>
+                        <span class="badge bg-dark border border-secondary text-light"><i class="fa-brands fa-python me-1"></i> Python / FastAPI</span>
+                        <span class="badge bg-dark border border-secondary text-light"><i class="fa-solid fa-database me-1"></i> PostgreSQL / Redis</span>
+                        <span class="badge bg-dark border border-secondary text-light"><i class="fa-brands fa-docker me-1"></i> Docker & CI/CD</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#portfolio" class="btn btn-fintech-primary btn-lg"><i class="fa-solid fa-briefcase me-2"></i>瀏覽作品集</a>
+                        <a href="#contact" class="btn btn-fintech-outline text-white border-white btn-lg"><i class="fa-solid fa-envelope me-2"></i>聯繫面試</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 專業技能區塊 Technical Skills -->
+    <section id="skills" class="py-5">
+        <div class="container py-4">
+            <h2 class="section-title text-center mx-auto" style="max-width: fit-content;">專業技術領域</h2>
+            <p class="text-center text-muted mb-5">結合現代化全端技術鏈與金融業務邏輯，致力於打造穩健、安全且高效的軟體服務</p>
+
+            <div class="row g-4">
+                <!-- 前端開發 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle p-3 bg-primary bg-opacity-10 text-primary me-3">
+                                <i class="fa-solid fa-desktop fa-xl"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-0">前端開發 (Frontend)</h4>
+                        </div>
+                        <p class="text-muted small mb-3">注重使用者體驗 (UX)、RWD 響應式切版與高可靠度的狀態管理。</p>
+                        <div>
+                            <span class="skill-pill">React.js / Next.js</span>
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">Vue.js 3</span>
+                            <span class="skill-pill">HTML5 / CSS3 / SCSS</span>
+                            <span class="skill-pill">Bootstrap 5 / Tailwind CSS</span>
+                            <span class="skill-pill">Redux Toolkit / Zustand</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 後端開發與 API -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle p-3 bg-success bg-opacity-10 text-success me-3">
+                                <i class="fa-solid fa-server fa-xl"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-0">後端架構 (Backend)</h4>
+                        </div>
+                        <p class="text-muted small mb-3">建構高平行處理、 RESTful API 以及微服務架構 (Microservices)。</p>
+                        <div>
+                            <span class="skill-pill">Node.js (Express / NestJS)</span>
+                            <span class="skill-pill">Python (FastAPI / Django)</span>
+                            <span class="skill-pill">RESTful API Design</span>
+                            <span class="skill-pill">GraphQL</span>
+                            <span class="skill-pill">JWT / OAuth 2.0 驗證</span>
+                            <span class="skill-pill">gRPC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 資料庫與快取 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle p-3 bg-warning bg-opacity-10 text-warning me-3">
+                                <i class="fa-solid fa-database fa-xl"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-0">資料庫 (Database)</h4>
+                        </div>
+                        <p class="text-muted small mb-3">資安合規、交易 ACID 特性維護與巨量資料查詢最佳化。</p>
+                        <div>
+                            <span class="skill-pill">PostgreSQL / MySQL</span>
+                            <span class="skill-pill">Redis (Cache & MQ)</span>
+                            <span class="skill-pill">MongoDB</span>
+                            <span class="skill-pill">Prisma / TypeORM</span>
+                            <span class="skill-pill">SQL 查詢最佳化</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps & 雲端營運 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle p-3 bg-info bg-opacity-10 text-info me-3">
+                                <i class="fa-solid fa-cloud-arrow-up fa-xl"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-0">DevOps & 雲端維運</h4>
+                        </div>
+                        <p class="text-muted small mb-3">自動化部署流程，提升團隊交付效率與服務高可用性。</p>
+                        <div>
+                            <span class="skill-pill">Docker & Docker Compose</span>
+                            <span class="skill-pill">AWS (EC2, S3, RDS, Lambda)</span>
+                            <span class="skill-pill">GitHub Actions CI/CD</span>
+                            <span class="skill-pill">Nginx 負載平衡</span>
+                            <span class="skill-pill">Linux 系統管理</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 金融業務與資安 -->
+                <div class="col-md-6 col-lg-8">
+                    <div class="custom-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="rounded-circle p-3 bg-danger bg-opacity-10 text-danger me-3">
+                                <i class="fa-solid fa-lock fa-xl"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-0">金融領域專長 & 系統資安 (FinTech Domain)</h4>
+                        </div>
+                        <p class="text-muted small mb-3">結合財務會計背景，深度理解金融業務邏輯與嚴格的資安規範標準。</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i><strong>支付金流介接：</strong> 熟悉 第三方支付 (綠界/藍新)、TapPay API 串接與收單退款邏輯</li>
+                                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i><strong>帳務清算邏輯：</strong> 具備複式簿記概念，設計零誤差的帳務資料庫架構</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i><strong>資安防護技術：</strong> 防範 OWASP Top 10 (XSS, SQL Injection, CSRF)、AES/RSA 資料加密</li>
+                                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i><strong>高併發處理：</strong> 使用 Redis 分散式鎖 (Redlock) 避免搶購/交易超賣</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 學經歷 Timeline Section -->
+    <section id="experience" class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="section-title">學歷與工作經歷</h2>
+
+            <div class="row mt-4">
+                <!-- 左欄：工作經歷 -->
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <h3 class="h4 fw-bold mb-4 text-primary"><i class="fa-solid fa-briefcase me-2"></i>工作經歷</h3>
+                    <div class="timeline">
+                        <!-- 經歷 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 / 03 – 至今</div>
+                            <h4 class="h5 fw-bold mb-1">全端開發工程師 | 某知名 FinTech 科技公司</h4>
+                            <p class="text-muted small mb-2">負責核心電子支付與金流結算系統的開發與維護</p>
+                            <ul class="text-secondary small ps-3">
+                                <li>使用 Node.js (Express) 與 React 重構舊版清算後台，使頁面載入速度提升 40%。</li>
+                                <li>設計微服務架構 API，並透過 Redis 實作快取機制，順利應對雙 11 期間每秒超過 1,200 TPS 的高併發請求。</li>
+                                <li>導入 Docker 與 GitHub Actions 實作 CI/CD 自動化測試與部署，將每次改版上線時間縮短 60%。</li>
+                            </ul>
+                        </div>
+
+                        <!-- 經歷 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021 / 07 – 2023 / 02</div>
+                            <h4 class="h5 fw-bold mb-1">系統營運與數據分析專員 | 某商業銀行 數位金融部</h4>
+                            <p class="text-muted small mb-2">負責網銀系統帳務核對、用戶行為數據統計與需求分析</p>
+                            <ul class="text-secondary small ps-3">
+                                <li>編寫 Python 自動化腳本進行跨系統帳務對帳，原每日需耗時 2 小時的人工作業降至 5 分鐘。</li>
+                                <li>與 IT 開發團隊配合，擔任 PM 與 Dev 之間的溝通橋樑，協助撰寫 15+ 份系統規格需求書 (FSD)。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右欄：學歷與專業培訓 -->
+                <div class="col-lg-5">
+                    <h3 class="h4 fw-bold mb-4 text-primary"><i class="fa-solid fa-graduation-cap me-2"></i>學歷與培訓</h3>
+                    <div class="timeline">
+                        <!-- 培訓 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 / 09 – 2023 / 02</div>
+                            <h4 class="h5 fw-bold mb-1">全端軟體工程師密集實戰班</h4>
+                            <p class="text-muted small mb-1">財團法人法人資訊工業策進會 / 軟體訓練營</p>
+                            <p class="text-secondary small">接受 600+ 小時專業程式開發訓練，完成獨立專題與團隊敏捷專案開發。</p>
+                        </div>
+
+                        <!-- 學歷 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017 / 09 – 2021 / 06</div>
+                            <h4 class="h5 fw-bold mb-1">財務金融學系 學士</h4>
+                            <p class="text-muted small mb-1">國立臺灣大學 / 財金系</p>
+                            <p class="text-secondary small">主修金融市場、會計學、投資學與程式化交易。具備穩健的商業與金融邏輯。</p>
+                        </div>
+                    </div>
+
+                    <!-- 專業證照 -->
+                    <div class="mt-4 p-3 rounded bg-light border">
+                        <h5 class="fw-bold h6 mb-2"><i class="fa-solid fa-certificate text-warning me-2"></i>專業證照 & 檢定</h5>
+                        <ul class="list-unstyled mb-0 small text-secondary">
+                            <li class="mb-1"><i class="fa-solid fa-check-circle text-primary me-2"></i>AWS Certified Solutions Architect – Associate</li>
+                            <li class="mb-1"><i class="fa-solid fa-check-circle text-primary me-2"></i>證券商業務員 / 銀行內部控制與內部稽核檢定</li>
+                            <li><i class="fa-solid fa-check-circle text-primary me-2"></i>TOEIC 多益多語檢定 880 分 (金質證書)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 作品集 Section (包含可自訂的按鈕連結) -->
+    <section id="portfolio" class="py-5">
+        <div class="container py-4">
+            <div class="d-md-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h2 class="section-title mb-2">作品集 Portfolio</h2>
+                    <p class="text-muted mb-0">精選全端開發專案，點擊下方按鈕即可查看程式碼與線上展示 (連結可由您自行設定)</p>
+                </div>
+            </div>
+
+            <!-- 作品卡片列表 -->
+            <div class="row g-4">
+                
+                <!-- 作品 1：金融級分散式帳務交易系統 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card portfolio-card">
+                        <div class="portfolio-img-wrapper">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-uppercase text-muted fw-bold small mb-1">Full-Stack FinTech App</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">分散式高併發帳務交易平台</h3>
+                            <p class="text-muted small mb-3 flex-grow-1">
+                                提供使用者數位錢包開戶、即時轉帳與儲值功能。後端採用 Node.js + Redis 實作分散式鎖，防止重複交易與超賣現象。
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge bg-light text-dark border me-1">React</span>
+                                <span class="badge bg-light text-dark border me-1">Node.js</span>
+                                <span class="badge bg-light text-dark border me-1">PostgreSQL</span>
+                                <span class="badge bg-light text-dark border me-1">Redis</span>
+                            </div>
+                            <!-- 按鈕區塊 (使用者可自訂 href) -->
+                            <div class="pt-3 border-top d-flex gap-2">
+                                <!-- 請在 href="您的連結" 修改為您的實際連結 -->
+                                <a href="1030-AI.html" target="_blank" class="btn btn-sm btn-fintech-outline flex-fill">
+                                    <i class="fa-brands fa-github me-1"></i> GitHub 原始碼
+                                </a>
+                                <a href="1030-AI.html" target="_blank" class="btn btn-sm btn-fintech-primary flex-fill">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> 線上 Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 2：AI 智投理財與資產配置儀表板 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card portfolio-card">
+                        <div class="portfolio-img-wrapper" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+                            <i class="fa-solid fa-chart-line text-warning"></i>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-uppercase text-muted fw-bold small mb-1">Data & Analytics</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">智能投資組合儀表板</h3>
+                            <p class="text-muted small mb-3 flex-grow-1">
+                                結合 Python FastAPI 抓取台美股歷史數據，使用 Vue 3 + Chart.js 繪製可視化投資組合夏普值 (Sharpe Ratio) 評估圖表。
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge bg-light text-dark border me-1">Vue 3</span>
+                                <span class="badge bg-light text-dark border me-1">FastAPI</span>
+                                <span class="badge bg-light text-dark border me-1">Pandas</span>
+                                <span class="badge bg-light text-dark border me-1">Chart.js</span>
+                            </div>
+                            <!-- 按鈕區塊 (使用者可自訂 href) -->
+                            <div class="pt-3 border-top d-flex gap-2">
+                                <a href="1102-4ch07rollerAI.html" target="_blank" class="btn btn-sm btn-fintech-outline flex-fill">
+                                    <i class="fa-brands fa-github me-1"></i> GitHub 原始碼
+                                </a>
+                                <a href="1102-4ch07rollerAI.html" target="_blank" class="btn btn-sm btn-fintech-primary flex-fill">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> 線上 Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作品 3：電商金流整合管理系統 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card portfolio-card">
+                        <div class="portfolio-img-wrapper" style="background: linear-gradient(135deg, #065f46 0%, #047857 100%);">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-uppercase text-muted fw-bold small mb-1">API Integration</span>
+                            <h3 class="h5 fw-bold text-dark mb-2">多管道金流整合中台</h3>
+                            <p class="text-muted small mb-3 flex-grow-1">
+                                整合綠界 ECPay、LINE Pay 與 Stripe 支付 API，提供統一的 Webhook 處理機制與自動化發票開立模組。
+                            </p>
+                            <div class="mb-3">
+                                <span class="badge bg-light text-dark border me-1">TypeScript</span>
+                                <span class="badge bg-light text-dark border me-1">Express</span>
+                                <span class="badge bg-light text-dark border me-1">Webhook</span>
+                                <span class="badge bg-light text-dark border me-1">Docker</span>
+                            </div>
+                            <!-- 按鈕區塊 (使用者可自訂 href) -->
+                            <div class="pt-3 border-top d-flex gap-2">
+                                <a href="https://github.com" target="_blank" class="btn btn-sm btn-fintech-outline flex-fill">
+                                    <i class="fa-brands fa-github me-1"></i> GitHub 原始碼
+                                </a>
+                                <a href="https://example.com" target="_blank" class="btn btn-sm btn-fintech-primary flex-fill">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> 技術文件
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 聯絡資訊 Section -->
+    <section id="contact" class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="row justify-content-center text-center mb-4">
+                <div class="col-lg-8">
+                    <h2 class="section-title text-center mx-auto" style="max-width: fit-content;">聯絡我 Contact Me</h2>
+                    <p class="text-muted">若您正在尋找兼具金融業務視野與技術執行力的全端工程師，歡迎隨時與我聯繫！</p>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <!-- 聯絡卡片 1 -->
+                <div class="col-md-4">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="rounded-circle p-3 bg-primary bg-opacity-10 text-primary d-inline-block mb-3">
+                            <i class="fa-solid fa-envelope fa-2xl"></i>
+                        </div>
+                        <h4 class="h6 fw-bold">電子郵件 Email</h4>
+                        <p class="text-muted small mb-2">歡迎來信交流與預約面試</p>
+                        <a href="mailto:alex.chen@example.com" class="fw-bold text-decoration-none text-primary">alex.chen@example.com</a>
+                    </div>
+                </div>
+
+                <!-- 聯絡卡片 2 -->
+                <div class="col-md-4">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="rounded-circle p-3 bg-success bg-opacity-10 text-success d-inline-block mb-3">
+                            <i class="fa-brands fa-linkedin-in fa-2xl"></i>
+                        </div>
+                        <h4 class="h6 fw-bold">LinkedIn 社群</h4>
+                        <p class="text-muted small mb-2">瀏覽我的完整履歷與職涯動態</p>
+                        <a href="https://linkedin.com" target="_blank" class="fw-bold text-decoration-none text-success">linkedin.com/in/alexchen</a>
+                    </div>
+                </div>
+
+                <!-- 聯絡卡片 3 -->
+                <div class="col-md-4">
+                    <div class="custom-card p-4 text-center h-100">
+                        <div class="rounded-circle p-3 bg-dark bg-opacity-10 text-dark d-inline-block mb-3">
+                            <i class="fa-brands fa-github fa-2xl"></i>
+                        </div>
+                        <h4 class="h6 fw-bold">GitHub 專案</h4>
+                        <p class="text-muted small mb-2">查看我的 Open Source 與程式範例</p>
+                        <a href="https://github.com" target="_blank" class="fw-bold text-decoration-none text-dark">github.com/alexchen-dev</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 頁尾 Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-2">© 2026 Alex Chen. All Rights Reserved. Styled for FinTech & Banking Excellence.</p>
+            <p class="small text-muted mb-0">Built with Bootstrap 5, Font Awesome & Custom Financial Navy Palette.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

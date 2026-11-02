@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寵物食品演化史 - 時間軸排版</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="model.css">
+    <style>
+        /* 全域粉嫩溫柔主題設定 */
+        body {
+            background-color: #fff8f9;
+            color: #4a3f43; /* 深灰褐色，保持高對比易讀性 */
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        /* 標題樣式優化 */
+        .header-title {
+            background: linear-gradient(135deg, #f8c8d8 0%, #eea4b8 100%) !important;
+            color: #ffffff !important;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(238, 164, 184, 0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .text-custom-title {
+            color: #d86a86 !important; /* 濃郁莓粉色標題 */
+            font-weight: 800;
+        }
+
+        /* 背景圖片基礎樣式 */
+        .bg-img {
+            background-position: center;
+            background-size: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(216, 106, 134, 0.15);
+            transition: transform 0.5s ease;
+        }
+
+        /* 文字盒樣式優化 */
+        .text-box {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(244, 201, 212, 0.25);
+            border: 1px solid #fdeedb;
+        }
+
+        .text-box p {
+            line-height: 1.7;
+            margin-bottom: 12px;
+            color: #5a4b50;
+        }
+
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /************* 時間軸樣式優化 ***********/
+        .timeline-section {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* 時間軸中央主線 */
+        .timeline-section::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            background: linear-gradient(to bottom, #f8c8d8, #e8a7b8);
+            border-radius: 3px;
+        }
+
+        .timeline-section-pointer {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        /* 時間軸節點圓點 */
+        .timeline-section-pointer::before {
+            position: absolute;
+            content: "";
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 5px solid #ee9ca7;
+            box-shadow: 0 0 10px rgba(238, 156, 167, 0.5);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-section-pointer:hover::before {
+            width: 32px;
+            height: 32px;
+            top: 16px;
+            background-color: #ffdde1;
+            border-color: #d86a86;
+        }
+
+        /************* 美化 roller 遮罩特效 ***********/
+        /* 通用遮罩盒 */
+        .roller-box-base {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* 換成溫柔的粉紫色調半透明漸層 */
+            background: linear-gradient(135deg, rgba(248, 200, 216, 0.85), rgba(216, 106, 134, 0.85));
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            backdrop-filter: blur(2px); /* 輕微模糊背景提升質感 */
+        }
+
+        /* 按鈕美化 */
+        .btn-custom-roller {
+            background-color: #ffffff !important;
+            color: #d86a86 !important;
+            font-weight: 700;
+            border: none !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-roller:hover {
+            background-color: #4a3f43 !important;
+            color: #ffffff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 1. 從右到左 (roller-r) */
+        .roller-r {
+            position: relative;
+            overflow: hidden;
+        }
+        .roller-r .roller-box-r {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, rgba(248, 200, 216, 0.85), rgba(216, 106, 134, 0.85));
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
+        }
+        .roller-r:hover .roller-box-r {
+            transform: translateX(0);
+        }
+
+        /* 2. 從左到右 (roller-l) */
+        .roller-l {
+            position: relative;
+            overflow: hidden;
+        }
+        .roller-l .roller-box-l {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, rgba(248, 200, 216, 0.85), rgba(216, 106, 134, 0.85));
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
+        }
+        .roller-l:hover .roller-box-l {
+            transform: translateX(0);
+        }
+
+        /* 3. 從上到下 (roller-t) */
+        .roller-t {
+            position: relative;
+            overflow: hidden;
+        }
+        .roller-t .roller-box-t {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, rgba(248, 200, 216, 0.85), rgba(216, 106, 134, 0.85));
+            transform: translateY(-100%);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
+        }
+        .roller-t:hover .roller-box-t {
+            transform: translateY(0);
+        }
+
+        /* 4. 從下到上 (roller-b) */
+        .roller-b {
+            position: relative;
+            overflow: hidden;
+        }
+        .roller-b .roller-box-b {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, rgba(248, 200, 216, 0.85), rgba(216, 106, 134, 0.85));
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
+        }
+        .roller-b:hover .roller-box-b {
+            transform: translateY(0);
+        }
+
+        /************* RWD 響應式調整 ***********/
+        @media screen and (max-width: 768px) {
+            .timeline-section::before {
+                left: -10px;
+            }
+
+            .timeline-section-pointer::before {
+                left: 0px;
+            }
+
+            .text-box {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-4 fw-bold text-center header-title my-4 p-3">毛孩飲食的變遷：寵物食品演化史</div>
+        
+        <div class="timeline-section">
+            <!-- 階段 01 -->
+            <div class="row timeline-section-pointer align-items-center">
+                <div class="col-md-6">
+                    <div class="img-box bg-img roller-r" style="background-image:url(image/01.jpg);height:320px">
+                        <div class="roller-box-r">
+                            <button class="btn btn-custom-roller">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <div class="h3 fw-bold text-custom-title mb-3">01. 傳統廚餘與剩飯時代</div>
+                        <p>在工業化發展之前，人類與寵物的飲食並沒有明確的分界。狗狗與貓咪主要食用家庭剩飯、剩菜或狩獵獲得的殘渣。</p>
+                        <p>當時大眾缺乏針對動物營養學的觀念，寵物往往面臨高鹽分、營養不均等健康風險。然而這也奠定了人類與毛孩共享生活經驗的深厚情感連結。</p>
+                        <p>這個階段雖然營養不夠全面，但代表了早期人類照顧伴侶動物最樸實的萌芽時期。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 階段 02 -->
+            <div class="row flex-row-reverse timeline-section-pointer align-items-center">
+                <div class="col-md-6">
+                    <div class="img-box bg-img roller-l" style="background-image:url(image/02.jpg);height:320px">
+                        <div class="roller-box-l">
+                            <button class="btn btn-custom-roller">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <div class="h3 fw-bold text-custom-title mb-3">02. 商業乾糧的崛起</div>
+                        <p>19世紀末至20世紀初，第一款商業化狗餅乾問世，開啟了現代寵物食品產業的序幕。透過擠壓膨化技術，方便保存的乾飼料迅速普及。</p>
+                        <p>乾糧帶來了前所未有的便利性與經濟效益，並且開始在配方中添加維生素與礦物質，滿足寵物的基礎生理生存需求。</p>
+                        <p>飼養毛孩變得更省時簡單，寵物食品也從傳統廚餘轉變為具備標準化製造流程的獨立產業。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 階段 03 -->
+            <div class="row timeline-section-pointer align-items-center">
+                <div class="col-md-6">
+                    <div class="img-box bg-img roller-t" style="background-image:url(image/03.jpg);height:320px">
+                        <div class="roller-box-t">
+                            <button class="btn btn-custom-roller">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <div class="h3 fw-bold text-custom-title mb-3">03. 濕糧與主食罐升級</div>
+                        <p>隨著獸醫學進步，毛主人開始意識到水分攝取與高品質蛋白質對貓狗（尤其是肉食性的貓咪）泌尿系統與腎臟健康的重要性。</p>
+                        <p>罐頭與濕糧產品開始大放異彩。強調無穀物、高肉含量、符合AAFCO/FEDIAF完整營養標準的主食罐逐漸成為寵物家庭的必備選擇。</p>
+                        <p>寵物飲食從「吃得飽」邁向「吃得健康」，產品分類也變得更加精細與科學化。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 階段 04 -->
+            <div class="row flex-row-reverse timeline-section-pointer align-items-center">
+                <div class="col-md-6">
+                    <div class="img-box bg-img roller-b" style="background-image:url(image/04.jpg);height:320px">
+                        <div class="roller-box-b">
+                            <button class="btn btn-custom-roller">了解更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <div class="h3 fw-bold text-custom-title mb-3">04. 鮮食與冷凍乾燥新時代</div>
+                        <p>現代寵物已轉變為無可取代的「家庭成員」。人們追求擬人化的高品質飲食，天然無添加的鮮食包、生肉餐與冷凍乾燥技術成為新風潮。</p>
+                        <p>低溫凍乾能保留優質食材的原汁原味與天然營養素，提供兼具極致美味與安全衛生的高端飲食體驗。</p>
+                        <p>如今，寵物飲食不僅關乎營養均衡，更充滿了主人對毛孩細緻綿密的愛與呵護。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
